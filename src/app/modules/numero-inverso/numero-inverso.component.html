@@ -1,5 +1,8 @@
 <h1> Calcular Numero Inverso</h1>
 
 <div>
-	<input type="number" >
+	<input type="number" (change)="calInverso($event)" (keyup)="calInverso($event)">
+	<div>
+		rsta:// <span>{{invert}}</span>
+	</div>
 </div>
