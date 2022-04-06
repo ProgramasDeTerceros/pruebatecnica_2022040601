@@ -1,1 +1,10 @@
-<p>list-entrada works!</p>
+<p>Orden de llegada</p>
+<app-regla regla="1" description="Ni Catalina ni Juan llegan tan Tarde como Carlos." [invalid]="regla1Invalid"
+	(onAplic)="regla1Aplicar()"></app-regla>
+
+<app-regla regla="2" description="Juan y Andrea llegan más tarde que Jorge." [invalid]="regla2Invalid"
+	(onAplic)="regla2Aplicar()"></app-regla>
+<app-regla regla="3" description="Catalina llega más tarde que Jorge, pero más temprano que Juan."
+	[invalid]="regla3Invalid" (onAplic)="regla3Aplicar()"></app-regla>
+
+<app-lista-empleados [empleados]="empleados"></app-lista-empleados>
