@@ -1,3 +1,7 @@
+<ul>
+	<ol *ngFor="let item of empleados;let i = index">{{i+1}}.{{item.nombre}}</ol>
+</ul>
+
 <pre>
 	{{empleados|json}}
 </pre>

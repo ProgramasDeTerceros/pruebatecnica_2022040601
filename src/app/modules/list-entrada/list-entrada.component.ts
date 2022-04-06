@@ -7,38 +7,34 @@ import { EmpleadoModel } from "src/app/shared/models/empleadoModel";
   styleUrls: ["./list-entrada.component.scss"],
 })
 export class ListEntradaComponent implements OnInit {
-  private empleadosBase: EmpleadoModel[];
-  public empleados: EmpleadoModel[] = [];
+  public empleados: EmpleadoModel[];
 
   constructor() {
-    this.empleadosBase = [
+    this.empleados = [
       { nombre: "Juan" },
       { nombre: "Andrea" },
       { nombre: "Carlos" },
       { nombre: "Catalina" },
       { nombre: "Jorge" },
     ];
-    this.UpdateEmpleados();
-  }
-  UpdateEmpleados(): void {
-    this.empleados = { ...this.empleadosBase };
   }
   ngOnInit(): void {
-    // this.regla1(true);
-    // this.regla2(true);
+    //  this.regla1(true);
+    //  this.regla2(true);
     // this.regla3(true);
   }
 
   findIndexEmpleado(empleado: String): number {
-    return this.empleadosBase.findIndex((x) => x.nombre == empleado);
+    return this.empleados.findIndex((x) => x.nombre == empleado);
   }
 
   changeOrden(index1: number, index2: number): void {
-    const temp = { ...this.empleadosBase[index1] };
-    this.empleadosBase[index1] = { ...this.empleadosBase[index2] };
-    this.empleadosBase[index2] = temp;
-
-    this.UpdateEmpleados();
+    if (index1 < 0 && index2 < 0) {
+      return;
+    }
+    const temp = { ...this.empleados[index1] };
+    this.empleados[index1] = { ...this.empleados[index2] };
+    this.empleados[index2] = { ...temp };
   }
   evaluarOrden(
     empleadoTemprano: String,
@@ -49,6 +45,13 @@ export class ListEntradaComponent implements OnInit {
     const indexTarde = this.findIndexEmpleado(empleadoTarde);
     if (indexTemprano > indexTarde) {
       if (corregir) {
+        console.log({
+          empleadoTemprano,
+          indexTemprano,
+          empleadoTarde,
+          indexTarde,
+          empleados: this.empleados,
+        });
         this.changeOrden(indexTemprano, indexTarde);
       }
       return false;
@@ -57,24 +60,21 @@ export class ListEntradaComponent implements OnInit {
   }
 
   regla1(corregir: boolean = false): boolean {
-    return (
-      this.evaluarOrden("Catalina", "Carlos", corregir) &&
-      this.evaluarOrden("Juan", "Calos", corregir)
-    );
+    const valid = this.evaluarOrden("Catalina", "Carlos", corregir),
+      valid2 = this.evaluarOrden("Juan", "Carlos", corregir);
+    return valid && valid2;
   }
 
   regla2(corregir: boolean = false): boolean {
-    return (
-      this.evaluarOrden("Jorge", "Juan", corregir) &&
-      this.evaluarOrden("Jorge", "Andrea", corregir)
-    );
+    const valid = this.evaluarOrden("Jorge", "Juan", corregir),
+      valid2 = this.evaluarOrden("Jorge", "Andrea", corregir);
+    return valid && valid2;
   }
 
   regla3(corregir: boolean = false): boolean {
-    return (
-      this.evaluarOrden("Jorge", "Catalina", corregir) &&
-      this.evaluarOrden("Catalina", "Juan", corregir)
-    );
+    const valid = this.evaluarOrden("Jorge", "Catalina", corregir),
+      valid2 = this.evaluarOrden("Catalina", "Juan", corregir);
+    return valid && valid2;
   }
   regla1Aplicar(): void {
     this.regla1(true);
@@ -90,9 +90,9 @@ export class ListEntradaComponent implements OnInit {
     return !this.regla1();
   }
   get regla2Invalid(): boolean {
-    return !this.regla1();
+    return !this.regla2();
   }
   get regla3Invalid(): boolean {
-    return !this.regla1();
+    return !this.regla3();
   }
 }

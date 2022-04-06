@@ -1,10 +1,10 @@
-<div>
+<div class="alert " [ngClass]="invalid ? 'alert alert-danger' : 'alert-success'" >
 	<h3>
 		regla {{regla}}
 	</h3>
 	<p>
 		{{description}}
 	</p>
-	<input type="button" value="aplicar" (click)="aplicarRegla()" >
+	<input type="button" value="aplicar" (click)="aplicarRegla()" *ngIf="invalid" >
 </div>
 <div>
