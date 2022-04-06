@@ -95,4 +95,12 @@ export class ListEntradaComponent implements OnInit {
   get regla3Invalid(): boolean {
     return !this.regla3();
   }
+
+  aplicarRegla() {
+    while (true) {
+      if (this.regla1(true) && this.regla2(true) && this.regla3(true)) {
+        break;
+      }
+    }
+  }
 }

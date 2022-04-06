@@ -1,4 +1,4 @@
-<p>Orden de llegada</p>
+<h1>Orden de llegada</h1>
 <app-regla regla="1" description="Ni Catalina ni Juan llegan tan Tarde como Carlos." [invalid]="regla1Invalid"
 	(onAplic)="regla1Aplicar()"></app-regla>
 
@@ -6,5 +6,7 @@
 	(onAplic)="regla2Aplicar()"></app-regla>
 <app-regla regla="3" description="Catalina llega más tarde que Jorge, pero más temprano que Juan."
 	[invalid]="regla3Invalid" (onAplic)="regla3Aplicar()"></app-regla>
+
+	<input type="button" value="CalcularTodas" (click)="aplicarRegla()" *ngIf="regla1Invalid && regla2Invalid && regla3Invalid" >
 
 <app-lista-empleados [empleados]="empleados"></app-lista-empleados>
