@@ -8,6 +8,7 @@ import { EmpleadoModel } from "src/app/shared/models/empleadoModel";
 })
 export class ListaEmpleadosComponent implements OnInit {
   @Input() empleados: EmpleadoModel[] = [];
+  @Input() valid: boolean = false;
   constructor() {}
 
   ngOnInit(): void {}

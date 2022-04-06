@@ -7,6 +7,8 @@
 <app-regla regla="3" description="Catalina llega más tarde que Jorge, pero más temprano que Juan."
 	[invalid]="regla3Invalid" (onAplic)="regla3Aplicar()"></app-regla>
 
-	<input type="button" value="CalcularTodas" (click)="aplicarRegla()" *ngIf="regla1Invalid && regla2Invalid && regla3Invalid" >
+<input type="button" value="CalcularTodas" (click)="aplicarRegla()"
+	*ngIf="regla1Invalid || regla2Invalid || regla3Invalid">
 
-<app-lista-empleados [empleados]="empleados"></app-lista-empleados>
+<app-lista-empleados [empleados]="empleados" [valid]="!(regla1Invalid || regla2Invalid || regla3Invalid)">
+</app-lista-empleados>

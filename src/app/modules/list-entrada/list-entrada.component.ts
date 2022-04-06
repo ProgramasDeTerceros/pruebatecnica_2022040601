@@ -72,8 +72,9 @@ export class ListEntradaComponent implements OnInit {
   }
 
   regla3(corregir: boolean = false): boolean {
-    const valid = this.evaluarOrden("Jorge", "Catalina", corregir),
-      valid2 = this.evaluarOrden("Catalina", "Juan", corregir);
+    const valid = this.evaluarOrden("Catalina", "Juan", corregir),
+      valid2 = this.evaluarOrden("Jorge", "Catalina", corregir);
+      this.evaluarOrden("Catalina", "Juan", corregir)
     return valid && valid2;
   }
   regla1Aplicar(): void {

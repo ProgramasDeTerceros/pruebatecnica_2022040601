@@ -1,3 +1,9 @@
 <ul>
 	<ol *ngFor="let item of empleados;let i = index">{{i+1}}.{{item.nombre}}</ol>
 </ul>
+<div class="alert alert-success" *ngIf="valid">
+	<h4> llega mas temprano: </h4>
+	{{empleados[0].nombre}}
+	<h4> llega mas tarde: </h4>
+	{{empleados[empleados.length - 1].nombre}}
+</div>
